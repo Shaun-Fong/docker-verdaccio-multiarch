@@ -48,14 +48,14 @@ const loadGitHubReleases = (repo) =>
   getJSON(`https://api.github.com/repos/${repo}/releases`, {
     headers: {
       Accept: "application/json",
-      "User-Agent": "hertzg/docker-verdaccio-multiarch",
+      "User-Agent": "Shaun-Fong/docker-verdaccio-multiarch",
     },
   });
 
 const { EXCLUDE_TAGS = "" } = process.env;
 const blacklist = EXCLUDE_TAGS.split(",").filter((s) => s && s.length);
 
-// TODO(@hertzg): Use semver for range blocks instead of starts with
+// TODO(@Shaun-Fong): Use semver for range blocks instead of starts with
 //                See also: https://regex101.com/r/vkijKf/1/
 const isBlacklisted = (tag) =>
   blacklist.some((exclude) => tag.startsWith(exclude));
