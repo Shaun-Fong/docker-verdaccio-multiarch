@@ -14,6 +14,10 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     name: Loads latest releases from origin
     steps:
+      - name: Set the Command
+        run: |
+          echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> "$GITHUB_ENV"
+          
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.2
         with:
