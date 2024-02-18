@@ -2,11 +2,11 @@
 ---
 This repository contains scripts to support continuous multi-arch builds of 
 Verdaccio. You can see the built images at 
-[hertzg/verdaccio](https://hub.docker.com/r/hertzg/verdaccio/tags) on dockerhub.
+[shaunfong/verdaccio](https://hub.docker.com/r/hertzg/verdaccio/tags) on dockerhub.
 
 Github workflows builds every release from official github repository and in
 addition adds extra `:latest` tag to the latest release. Build happens at
-[predefined interval](https://github.com/hertzg/docker-verdaccio-multiarch/blob/master/.github/workflows/buildx.yml)
+[predefined interval](https://github.com/shaunfong/docker-verdaccio-multiarch/blob/master/.github/workflows/buildx.yml)
 in addition to every push.
 
 Images support following architectures:
