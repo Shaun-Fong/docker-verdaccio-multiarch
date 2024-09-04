@@ -16,12 +16,12 @@ jobs:
           echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> "$GITHUB_ENV"
           
       - name: Setup Node.js environment
-        uses: actions/setup-node@main
+        uses: actions/setup-node@v1.4.2
         with:
-          node-version: '20.x'
+          node-version: 14
 
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
 
       - name: Install Dependencies
         run: npm ci
@@ -36,7 +36,7 @@ jobs:
           BUILDMAP=$(node ./buildMatrix.js "$ORIGIN" "$MIRROR")
           echo "::set-output name=matrix::${BUILDMAP}"
   builds:
-    name: Build:${{ matrix.revision }}
+    name: shaunfong/verdaccio:${{ matrix.revision }}
     needs: load
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -48,7 +48,7 @@ jobs:
         uses: crazy-max/ghaction-docker-buildx@v1
 
       - name: Cache Docker layers
-        uses: actions/cache@main
+        uses: actions/cache@v2
         id: cache
         with:
           path: /tmp/.buildx-cache
@@ -57,7 +57,7 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
 
       - name: Login
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
